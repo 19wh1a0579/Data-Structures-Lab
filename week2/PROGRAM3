@@ -1,0 +1,62 @@
+
+3.Write a C Program for Binary Search using non-recursion
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int binary_search(int first,int last,int array[10],int ke){
+	int pos = -1,mid;
+
+	while (first <= last) {
+		mid = (last + first )/2;
+		if(array[mid] == ke){
+
+			pos = mid;
+			break;
+
+		}else if(array[mid]<ke){
+			first = mid +1;
+
+		}else
+			last = mid - 1;
+	}return pos;
+}
+
+int main() {
+
+	int n , ke, pos ;
+
+	int array[10];
+
+	scanf("%d",&n);
+
+	for(int i = 0; i < n ;i++) {
+
+		scanf("%d",&array[i]);
+
+	}
+	scanf("%d",&ke);
+
+	pos = binary_search(0,n-1,array,ke);
+	if(pos == -1) {
+
+			printf("element not present");
+
+	}else {
+
+		 printf("element found at %d",pos + 1);
+	 }
+
+}
+
+
+Output:
+4                                                                                                                                                
+1                                                                                                                                                
+2                                                                                                                                                
+3                                                                                                                                                
+4                                                                                                                                                
+5                                                                                                                                                
+element not present 
+
+
