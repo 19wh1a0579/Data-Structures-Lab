@@ -1,0 +1,60 @@
+2. Write a C Program for Linear Search using recursion
+
+	#include <stdio.h>
+#include <stdlib.h>
+
+int linear_search(int array[10],int n,int ke) {
+	static int i;
+
+	if(array[i] == ke) {
+		return i;
+	}else if(i<n) {
+		i++;
+		linear_search(array,n,ke);
+	}else
+		return -1;
+}
+
+
+
+int main() {
+
+	int n , ke, pos ;
+
+	int array[10];
+
+	scanf("%d",&n);
+
+	for(int i = 0; i < n ;i++) {
+
+		scanf("%d", &array[i]);
+
+	}
+	scanf("%d",&ke);
+
+	pos = linear_search (array,n,ke);
+
+	if(pos == -1) {
+
+			printf("element not present");
+
+	}else {
+
+		 printf("element found at %d",pos + 1);
+	 }
+
+}
+
+Output:
+5                                                                                                                     
+1                                                                                                                     
+2                                                                                                                     
+3                                                                                                                     
+45                                                                                                                    
+5                                                                                                                     
+5                                                                                                                     
+element found at 5    
+
+
+
+
