@@ -45,4 +45,24 @@ int main()
 		printf("%d\n",ar[i]);
 	}
 }
+
+Output
+ 
+ENTER THE NUMBER OF ELEMENTS:                                                                                           
+6                                                                                                                       
+9                                                                                                                       
+5                                                                                                                       
+8                                                                                                                       
+4                                                                                                                       
+2                                                                                                                       
+4                                                                                                                       
+ELEMENTS AFTER SORTING                                                                                                  
+2                                                                                                                       
+4                                                                                                                       
+4                                                                                                                       
+5                                                                                                                       
+8                                                                                                                       
+9                    
+ 
+
  
