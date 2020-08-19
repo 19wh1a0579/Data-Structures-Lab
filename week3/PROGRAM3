@@ -1,0 +1,66 @@
+iii) Insertion sort
+#include<stdio.h>
+
+void insertion_sort(int ar[],int n) {
+
+	int j, index;
+
+	for(int i = 0; i < n ; i ++) {
+
+		index = ar[i];
+
+		j = i;
+
+		while( (j >0) && (ar[j-1] > index)) {
+			ar[j] = ar[j -1];
+			j = j -1;
+
+		}
+		ar[j] = index;
+	}
+}
+
+int main()
+{
+	int n , ar[20];
+
+    printf("ENTER THE NUMBER OF ELEMENTS:\n");
+    
+	scanf("%d",&n);
+
+	for(int i = 0; i < n; i ++) {
+
+		scanf("%d\n",&ar[i]);
+	}
+
+	insertion_sort(ar,n);
+
+	printf("ELEMENTS AFTER SORTING\n");
+
+	for(int i = 0; i < n ; i ++) {
+
+		printf("%d\n",ar[i]);
+	}
+}
+
+
+
+Output
+ENTER THE NUMBER OF ELEMENTS:                                                                                           
+7                                                                                                                       
+2                                                                                                                       
+3                                                                                                                       
+6                                                                                                                       
+5                                                                                                                       
+4                                                                                                                       
+8                                                                                                                       
+7                                                                                                                       
+ELEMENTS AFTER SORTING                                                                                                  
+2                                                                                                                       
+3                                                                                                                       
+4                                                                                                                       
+5                                                                                                                       
+6                                                                                                                       
+7                                                                                                                       
+8           
+
