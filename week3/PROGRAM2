@@ -1,0 +1,75 @@
+      
+ii) Selection sort      
+ 
+ 
+#include<stdio.h>
+ 
+void selection_sort(int ar[],int n) {
+ 
+	int temp, min;
+ 
+	for(int i = 0; i < n-1; i ++) {
+		min = i;
+ 
+		for(int j = i + 1 ; j < n ; j ++) {
+ 
+			if(ar[j] < ar[min]) {
+				min = j;
+			}
+ 
+				temp = ar[j];
+ 
+				ar[j] = ar[ min];
+ 
+				ar[min] = temp;
+ 
+		}
+ 
+	}
+ 
+}
+ 
+int main()
+{
+	int n , ar[20];
+ 
+ 
+	scanf("%d",&n);
+ 
+	for(int i = 0; i < n; i ++) {
+ 
+		scanf("%d\n",&ar[i]);
+	}
+ 
+	selection_sort(ar,n);
+ 
+	printf("ELEMENTS AFTER SORTING");
+ 
+	for(int i = 0; i <n ; i ++ ) {
+ 
+		printf("%d\n",ar[i]);
+	}
+}
+ 
+Output
+ENTER THE NUMBER OF ELEMENTS:                                                                                           
+8                                                                                                                       
+6                                                                                                                       
+4                                                                                                                       
+9                                                                                                                       
+3                                                                                                                       
+6                                                                                                                       
+1                                                                                                                       
+0                                                                                                                       
+2                                                                                                                       
+ELEMENTS AFTER SORTING                                                                                                  
+0                                                                                                                       
+1                                                                                                                       
+2                                                                                                                       
+3                                                                                                                       
+4                                                                                                                       
+6                                                                                                                       
+6                                                                                                                       
+9         
+ 
+ 
