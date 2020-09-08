@@ -1,0 +1,334 @@
+Write a program that uses functions to perform the following operations on Double linked
+list.:
+i) Creation 
+ii) Insertion 
+iii) Deletion
+ iv) Traversal
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node {
+    
+    int data;
+    struct node *prev;
+    struct node *next;
+};
+struct node *head = NULL, *tail = NULL, *cur ,*t1, *t2;
+
+//1.function to create a double linked list.
+void create() {
+     
+    int n;
+    printf("\nENTER THE NUMBER OF NODES REQUIRED :\n");
+    scanf("%d", &n);
+    for(int i = 0; i < n; i ++) {
+        
+        cur = (struct node*)malloc(sizeof(struct node));
+        printf("\nENTER THE VALUE OF THE NODE :\n");
+        scanf("%d",&cur->data);
+        cur->prev = NULL;
+        cur->next = NULL;
+        
+        if(head == NULL) {
+            head =  tail = cur;
+        }
+        else {
+            tail->next = cur;
+            cur->prev = tail;
+            tail = cur;
+        }
+    }
+}
+
+//2.function to insert a node at the beginning.
+void insert_at_begin() {
+    
+    cur = (struct node*)malloc(sizeof(struct node));
+    printf("\nENTER THE VALUE OF THE NODE THAT IS TO INSERTED AT THE BEGINNING :\n");
+    scanf("%d",&cur->data);
+    cur->prev = NULL;
+    cur->next = head;
+    head->prev = cur;
+    head = cur;
+}
+    
+//3.function to insert a node at the end.
+void insert_at_end() {
+    
+    cur = (struct node*)malloc(sizeof(struct node));
+    printf("\nENTER THE VALUE OF THE NODE THAT IS TO INSERTED AT THE END :\n");
+    scanf("%d",&cur->data);
+    cur->next = NULL;
+    cur->prev = tail;
+    tail->next = cur;
+    tail = cur;
+}
+
+//4.insert the node at ta particular position.
+
+void insert_at_position() {
+    
+    int c = 1, pos;
+    
+    cur = (struct node*)malloc(sizeof(struct node));
+    printf("\nENTER THE VALUE OF THE NODE THAT IS TO INSERTED :\n");
+    scanf("%d",&cur->data);
+    printf("\nENTER THE POSITION WHERE THE NODE SHOULD BE INSERTED :\n");
+    scanf("%d",&pos);
+    t1 = head;
+    
+    while(c < pos && t1 != NULL) {
+        
+        t2 = t1;
+        t1 = t1->next;
+        c++;
+    }
+    t2->next = cur;
+    cur->prev = t2;
+    cur->next = t1;
+    t1->prev = cur;
+}
+    
+//5.function to insert a node before a given node having value.
+
+void insert_before_a_node() {
+    
+    int value;
+    cur = (struct node*)malloc(sizeof(struct node));
+    printf("\nENTER THE VALUE OF THE NODE THAT IS TO INSERTED AT THE END :\n");
+    scanf("%d",&cur->data);
+    printf("ENTER THE VALUE OF THE NODE BEFORE WHICH THE NEW NODE SHOULD BE INSERTED :");
+    scanf("%d",&value);
+    
+    t1 = head;
+    while(t1->data != value && t1 != NULL) {
+        
+        t2 = t1;
+        t1 = t1->next;
+    }
+    t2->next = cur;
+    cur->prev = t2;
+    cur->next = t1;
+    t1->prev = cur;
+    
+}
+
+//6.function to insert a node after another node having value.
+void insert_after_a_node() {
+    int value;
+    cur = (struct node*)malloc(sizeof(struct node));
+    printf("\nENTER THE DATA OF THE NEW NODE :\n");
+    scanf("%d",&cur->data);
+    printf("\nENTER THE VALUE OF THE NODE AFTER WHICH THE NEW NODE SHOULD BE INSERTED :\n");
+    scanf("%d",&value);
+    t1 = head;;
+    while(t1->data != value && t1 != NULL) {
+        t1 = t1->next;
+    }
+    cur->next = t1->next;
+    t1->next->prev = cur;
+    t1->next = cur;
+    cur->prev = t1;
+}
+//7.delete the first node.
+void delete_at_begin() {
+    
+    cur = head;
+    head = head->next;
+    head->prev = NULL;
+    cur->next = NULL;
+    printf("\nDELETED ELEMENT IS %d\n",cur->data);
+    free(cur);
+}
+//8.delete the last node.
+void delete_at_end() {
+    cur=tail;
+    tail = tail->prev;
+    tail->next = NULL;
+    cur->prev = NULL;
+    printf("\nDELETED ELEMENT IS %d",cur->data);
+    free(cur);
+}
+
+//9.delete node at position
+void delete_at_position() {
+    int c = 1, pos;
+    printf("\nENTER THE POSITION OF THE NODE TO BE DELETED\n");
+    scanf("%d",&pos);
+    t1 = head;
+    while(c < pos && t1 != NULL ) {
+        
+        t2 = t1;
+        t1 = t1->next;
+        c++;
+    }
+    t2->next = t1->next;
+    t1->next->prev = t2;
+    printf("\nDELETED ELEMENT IS %d\n",t1->data);
+    free(t1);
+}
+
+//10.delete node before another node.
+void delete_before_node() {
+    int value;
+    printf("\nENTER THE VALUE OF THE NODE BEFORE WHICH NODE IS TO BE DELETED :\n");
+    scanf("%d",&value);
+    t1 = head;
+    
+    while(t1->next->data !=value && t1->next != NULL ) {
+        t2 = t1;
+        t1 = t1->next;
+    }
+    t2->next = t1->next;
+    t1->next->prev = t2;
+    printf("\nDELETED ELEMENT IS %d :\n",t1->data);
+    free(t1);
+    
+}
+//11.delete node after another node.
+void delete_after_node() {
+    int value;
+    printf("\nENTER THE VALUE AFTER WHILE THE NODE SHOULD BE DELETED:\n");
+    scanf("%d",&value);
+    t1 = head;
+    while(t1 != NULL && t1->data != value){
+        t1 = t1->next;
+    }
+    t2 = t1->next;
+    t1->next = t2->next;
+    t2->next->prev = t1;
+    printf("\nDELETED ELEMENT IS %d\n",t2->data);
+    free(t2);
+}
+//12
+void display_in_forward() {
+    if(head == NULL) 
+        printf("\nDLL IS EMPTY\n");
+    else{
+        cur = head;
+        printf("\nELEMENTS OF DLL ARE :\n");
+        while(cur != NULL) {
+            printf("%d <---->",cur->data);
+            cur = cur->next;
+        }
+    }    
+}
+//13
+void display_in_reverse() {
+    if(head == NULL) 
+        printf("\nDLL IS EMPTY\n");
+    else{
+        cur = tail;
+        printf("\nELEMENTS OF DLL IN REVERSE ARE :\n");
+        while(cur != NULL) {
+            printf("%d <---->",cur->data);
+            cur = cur->prev;
+        }
+    }    
+}
+
+ 
+//14.
+void search() {
+    int value,flag = 0;
+    printf("\nENTER THE VALUE TO BE SEARCHED\n");
+    scanf("%d",&value);
+    int c = 1;
+    t1 = head;
+    while(t1 != NULL) {
+        if(t1->data == value) {
+            flag = 1;
+            break;
+        }
+        t1 = t1->next;
+        c++;
+    }
+    if(flag == 1) {
+        printf("\nELEMENT FOUND\n");
+    }else{
+        printf("\nELEMENT NOT PRESENT IN THE DLL\n");
+    }
+}
+
+
+
+//15.
+void sorting() {
+    struct node *p1,*last = NULL;
+    int t, c;
+    do
+    {
+        c = 0;
+        p1 = head;
+        while(p1->next != last) {
+            if(p1->data > p1->next->data) {
+                t = p1->data;
+                p1->data = p1->next->data;
+                p1->next->data = t;
+                c = 1;
+            }
+            p1 = p1->next;
+        }
+        last = p1;
+    }while(c);
+}
+int main(void) {
+    
+    //int n;
+
+	int ch;
+	while(1) {
+		printf("\n************************************\n");
+
+		printf("FUNCTIONS FOR SINGLE LINKED LIST :");
+
+		printf("\n");
+
+		printf("1  -  create\n2  -  insert a node at the beginning\n3  -  insert a node at the end\n"
+				"4  -  insert node at position\n5  -  insert a node before another node having a value\n"
+				"6  -  insert a node after another having value\n7  -  delete node at the beginning\n"
+				"8  -  delete node at the end\n9  -  delete node at a position\n10 -  delete node before another node having value\n"
+				"11 -  delete a node after a given node\n12 -  display the data in the nodes\n"
+				"13 -  display in reverse\n14 -  searching\n15 -  sort\n");
+		printf("\n************************************\n");
+		printf("ENTER YOUR CHOICE");
+		printf("\n\n");
+		scanf("%d",&ch);
+		switch(ch) {
+
+		case 1: create();
+				break;
+		case 2:insert_at_begin();
+				break;
+		case 3:	insert_at_end();
+				break;
+		case 4:	insert_at_position();
+				break;
+		case 5:	insert_before_a_node();
+				break;
+		case 6:insert_after_a_node();
+				break;
+		case 7:delete_at_begin();
+				break;
+		case 8:delete_at_end();
+				break;
+		case 9:delete_at_position();
+				break;
+		case 10:delete_before_node();
+				break;
+		case 11:delete_after_node();
+				break;
+		case 12: display_in_forward();
+				break;
+		case 13:display_in_reverse();
+				break;
+		case 14:search();
+		       	break;
+		case 15:sorting();
+				break;
+		
+		case 16 : exit(0);
+
+		}
+	}
+}
