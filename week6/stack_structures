@@ -1,0 +1,98 @@
+// stack implementation using structures
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+
+	int data;
+	struct node *link;
+};
+struct node *top = NULL, *cur, *temp;
+
+void push(int x) {
+    
+    cur = (struct node*)malloc(sizeof(struct node));
+    cur->data = x;
+    cur->link = top;
+    top = cur;
+
+}
+void pop() {
+    
+    printf("\nDELETED ELEMENT IS %d\n",top->data);
+    top = top->link;
+    
+}
+
+
+int isempty() {
+    
+    if(top == NULL) {
+        printf("\nSTACK UNDERFLOW:(\n");
+        return 1;
+    }else{
+        printf("\nSTACK ISN'T EMPTY :)\n");
+        return 0;
+    }
+}
+
+void peek() {
+    
+    printf("\nTHE TOP ELEMENT IS %d\n",top->data);
+}
+
+
+void display()
+{
+    temp=top;
+    if(top==NULL)
+        printf("STACK UNDERFLOW :(");
+    else
+    {
+        
+        printf("STACK ELEMENTS ARE : \n");
+        while(temp!=NULL)
+        {
+            printf("%d\n",temp->data);
+            temp=temp->link;
+        }
+    }
+}
+
+
+int main()
+{
+	int ch, x;
+	while(1)
+	{
+	    printf("FUNCTIONS :\n");
+		printf("1  -  PUSH\n2  -  POP\n3  -  DISPLAY\n4  -  PEEK\n5  -  STACK UNDERFLOW OR NO\n6  -  EXIT\n");
+		printf("\n-----------------------\n");
+		printf("ENTER YOUR CHOICE :)\n");
+		
+		scanf("%d",&ch);
+		switch(ch)
+		{
+		case 1: printf("ENTER DATA TO BE PUSHED :\n");
+			    scanf("%d",&x);
+			    push(x);
+			    break;
+			    
+		case 2: if(isempty())
+			    printf("...\n");
+			else
+			{
+			pop();
+			}
+			break;
+		case 3: display();
+			break;
+		case 4:  peek();
+			break;
+		case 5: isempty();
+		    break;
+		case 6: exit(0);
+		}
+	}
+}
